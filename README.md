@@ -1,6 +1,9 @@
 # JUT.SU-auto-play-skips-opening
 JUT.SU auto play,skips opening
 
+Скрипт пропускает началные заставки и титры, также автоматически переходит к следующей серии.
+Что бы следующая серия открывалась на весь экран, советую открыть страницу в полноэкранном режиме(F11).
+
 #### Для работы скрипта необходим менджер скриптов. Какой менеджер скриптов вам использовать, зависит от того, какой браузер вы используете.
 
 * Chrome: [Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo) или [Violentmonkey](https://chrome.google.com/webstore/detail/violent-monkey/jinjaccalgkegednnccohejagnlnfdag)
