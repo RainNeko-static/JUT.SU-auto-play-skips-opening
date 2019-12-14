@@ -16,8 +16,6 @@
         while( typeof jQuery === "undefined" )
             await sleep(10);
     }
-    await waitForInit();
-
     class Style {
         constructor(text, attach = false) {
             this.el = document.createElement("style");
@@ -77,10 +75,6 @@
         elFirstPlay.click();
     }
 
-    const elPlayer = new ElControl("#my-player");
-
-    const elFullScreen = new ElControl(".vjs-fullscreen-control.vjs-control.vjs-button");
-    const elFullScreenChild = new ElControl(".vjs-fullscreen-control.vjs-control.vjs-button .vjs-icon-placeholder");
     async function firstDoFullScreen() {
         styleEmuFullScreen.attach();
     }
@@ -91,6 +85,12 @@
         return $(".there_is_link_to_next_episode").attr("href");
     }
 
+    
+	const elPlayer = new ElControl("#my-player");
+
+    const elFullScreen = new ElControl(".vjs-fullscreen-control.vjs-control.vjs-button");
+    const elFullScreenChild = new ElControl(".vjs-fullscreen-control.vjs-control.vjs-button .vjs-icon-placeholder");
+	
     const elFirstPlay = new ElControl(".vjs-big-play-button");
     const elPlay = $(".vjs-play-control.vjs-control.vjs-button.vjs-paused");
     const elPauseOrPlay = $(".vjs-play-control.vjs-control.vjs-button.vjs-playing");
@@ -110,6 +110,8 @@
 			z-index: 9999;
 			width: 100%;
 			height: 100%;
+			padding: 0px;
+			margin: 0px;
 		}
 
 		body {
@@ -117,14 +119,16 @@
 		}
 	`);
 
+
+	await waitForInit();
     while(![elPlayer, elFullScreenChild].every(e => e.isset))
         await sleep(100);
 
 
-    elFullScreenChild.el.on("click.emu", () => {
+    elFullScreenChild.el.on("click.emu, touchstart.emu", () => {
         const ret = !styleEmuFullScreen.attached;
         styleEmuFullScreen.detach();
-        elFullScreenChild.el.off("click.emu");
+        elFullScreenChild.el.off("click.emu, touchstart.emu");
         return ret;
     });
 
